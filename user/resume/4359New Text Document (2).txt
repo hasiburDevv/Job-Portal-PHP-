@@ -1,0 +1,456 @@
+<html>
+<body>
+<div id="countdown"></div>
+<div id="notifier"></div>
+
+<script type="text/javascript">
+
+(function () {
+  function display( notifier, str ) {
+    document.getElementById(notifier).innerHTML = str;
+  }
+
+  function toMinuteAndSecond( x ) {
+    return Math.floor(x/60) + ":" + (x=x%60 < 10 ? 0 : x);
+
+  }
+
+
+
+  function setTimer( remain, actions ) {
+
+    var action;
+
+    (function countdown() {
+
+       display("countdown", toMinuteAndSecond(remain));
+
+       if (action = actions[remain]) {
+
+         action();
+
+       }
+
+       if (remain > 0) {
+         remain -= 1;
+         setTimeout(arguments.callee, 1000);
+       }
+    })(); // End countdown
+  }
+
+  setTimer(20, {
+    10: function () { display("notifier", "Just 10 seconds to go"); },
+     5: function () { display("notifier", "5 seconds left");        },
+     0: function () { display("notifier", "Time is up baby");       }
+  });
+})();
+
+</script>
+</body>
+</html>
+////////////////////////////////////////////////
+
+<?php
+    session_start();
+    if( empty( $_SESSION['quiz'] ) )
+        {
+    $_SESSION['quiz']=date('Y-m-d H:i:s');
+        }
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script language ="javascript" >
+    <?php
+              $start=$_SESSION['quiz'];
+              $end=date('Y-m-d H:i:s', strtotime( $_SESSION['quiz'] . ' +20 minutes' ) );
+                echo "
+                    var date_quiz_start='$start';
+                    var date_quiz_end='$end';
+                    var time_quiz_end=new Date('$end').getTime();";
+      ?>
+        var tim;
+        var hour= 00;
+        var min = 01;
+        var sec = 60;
+        var f = new Date();
+        function f1() {
+            f2();
+            document.getElementById("starttime").innerHTML = "Your started your Exam at " + f.getHours() + ":" + f.getMinutes();
+        }
+        function f2() {
+            if (parseInt(sec) > 0) {
+                sec = parseInt(sec) - 1;
+                document.getElementById("showtime").innerHTML = "Your Left Time  is :"+hour+" hours:"+min+" Minutes :" + sec+" Seconds";
+                tim = setTimeout("f2()", 1000);
+            }
+            else {
+                if (parseInt(sec) == 0) {
+                    min = parseInt(min) - 1;
+                    if (parseInt(min) == 0) {
+                        clearTimeout(tim);
+                        location.href ="index.php";
+                    }
+                    else {
+                        sec = 60;
+                        document.getElementById("showtime").innerHTML = "Your Left Time  is :" + min + " Minutes ," + sec + " Seconds";
+                        tim = setTimeout("f2()", 1000);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="f1()" >
+    <form id="form1" runat="server">
+    <div>
+      <table width="100%" align="center">
+        <tr>
+          <td colspan="2">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id="starttime"></div><br />
+            <div id="endtime"></div><br />
+            <div id="showtime"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+              <br />
+          </td>
+        </tr>
+      </table>
+      <br />
+    </div>
+    </form>
+</body>
+</html>
+ ////////////////////////////////////////////////////////////////////////////////////////////
+<div>
+             <tr>
+                 <td>
+                  <span style="color:#FF0000; font-weight: 500;">
+     Position: </span>
+                    
+                 </td>
+                </tr>
+               
+               <tr>
+                 <td>
+            <?php echo $row['job_title']."<hr>"; ?>
+                   </td>
+               </tr> 
+           </div>
+
+        
+        <div>
+             <tr>
+                 <td >
+                  <span style="color:#FF0000; font-weight: 500;">Job Responsibilities: </span>
+                    
+                 </td>
+                </tr>
+               
+               <tr >
+                 <td >
+            <?php echo $row['Job_Responsibilities']."<hr>"; ?>
+                   </td>
+               </tr> 
+           </div>
+
+
+         <div>
+             <tr>
+                 <td>
+                  <span style="color:#FF0000; font-weight: 500;">Employment Status: </span>
+                    
+                 </td>
+                </tr>
+               
+               <tr>
+                 <td>
+            <?php echo $row['Employment_Status']."<hr>"; ?>
+                   </td>
+               </tr> 
+           </div>
+
+
+         <div>
+             <tr>
+                 <td>
+                  <span style="color:#FF0000; font-weight: 500;">Educational Requirements: </span>
+                    
+                 </td>
+                </tr>
+               
+               <tr>
+                 <td>
+            <?php echo $row['Educational_Requirements']."<hr>"; ?>
+                   </td>
+               </tr> 
+           </div>
+
+
+          <div>
+             <tr>
+                 <td>
+                  <span style="color:#FF0000; font-weight: 500;">Experience Requirements: </span>
+                    
+                 </td>
+                </tr>
+               
+               <tr>
+                 <td>
+            <?php echo $row['Experience_Requirements']."<hr>"; ?>
+                   </td>
+               </tr> 
+           </div>
+
+
+
+
+           <div>
+             <tr>
+                 <td>
+                  <span style="color:#FF0000; font-weight: 500;">Additional Requirements: </span>
+                    
+                 </td>
+                </tr>
+               
+               <tr>
+                 <td>
+            <?php echo $row['Additional_Requirements']."<hr>"; ?>
+                   </td>
+               </tr> 
+           </div>
+
+
+
+
+         <div>
+             <tr>
+                 <td>
+                  <span style="color:#FF0000; font-weight: 500;">Location: </span>
+                    
+                 </td>
+                </tr>
+               
+               <tr>
+                 <td>
+            <?php echo $row['location']."<hr>"; ?>
+                   </td>
+               </tr> 
+           </div>
+
+
+
+
+
+         <div>
+             <tr>
+                 <td>
+                  <span style="color:#FF0000; font-weight: 500;">Salary: </span>
+                    
+                 </td>
+                </tr>
+               
+               <tr>
+                 <td>
+            <?php echo $row['salary']."<hr>";?>
+                   </td>
+               </tr> 
+               
+           </div>
+
+
+         <div>
+             <tr>
+                 <td>
+                  <span style="color:#FF0000; font-weight: 500;">Application Deadline: </span>
+                    
+                 </td>
+                </tr>
+               
+               <tr>
+                 <td>
+            <?php echo $row['deadline']."<hr>"; ?>
+                   </td>
+               </tr> 
+           </div>
+
+           <div>
+             <tr>
+                 <td>
+                  <span style="color:#FF0000; font-weight: 500;">
+     NB: </span>
+                    
+                 </td>
+                </tr>
+               
+               <tr>
+                 <td>
+            <?php echo "dthrth55555555555555555555t rthrth <hr>"; ?>
+                   </td>
+               </tr> 
+           </div>
+
+
+///////////////////////////////////////////////////////
+<?php session_start();?>
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/uikit.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" type="image/x-icon" href="img/icon.png">
+  <title>Dhaka-jobs</title>
+
+
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-dark navbar-expand-md" uk-sticky="top: 200; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up">
+   <div class="container">
+     <a href="#" class="navbar-brand">Dhaka-jobs</a>
+     <button class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNav">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+    </div>
+  </nav>
+
+ <div class="container">  
+
+  
+  
+ 
+
+<div col-lg-8 m-auto d-block>  <!-- this div show whole contain lg-8 -->
+<div class="card">
+<h3 class="text-center card header"><?php echo $_SESSION['job_name'];?> Welcome <?php echo $_SESSION['user_name']; ?> </h3> 
+
+<? echo $_SESSION['start_t'];?>
+
+<h5 >NB:You have to answer all out of <?php echo $_SESSION['end'] - $_SESSION['start'];
+       ?> Question.<h5>
+
+</div> <br>
+
+
+
+<form action="result.php" method="post"> <!-- from use here becouse user give input  -->
+<?php
+
+$m = $_SESSION['start'];
+$n = $_SESSION['end'];
+
+//echo $m."<br>"; 
+
+//echo $n;
+for($i =$m; $i <$n; $i++){
+
+$q = "SELECT * FROM questions where qid=$i";
+$query = mysqli_query($con,$q); 
+
+
+while ($rows = mysqli_fetch_array($query)) {  // bracket start here
+
+?>  <!-- here php end because have to use div element for show question -->
+
+<div class="card"> <!-- this div use to sho the question result -->
+  <h4 class="card-header"> <?php echo $rows['question']; ?> </h4>
+  
+
+
+
+<?php
+$q = "SELECT * FROM answers where ans_id=$i";
+$query = mysqli_query($con,$q); 
+
+
+while ($rows = mysqli_fetch_array($query)) {
+?>
+
+<div class="card-body">
+  
+<input type="radio"
+ name="quizcheck[<?php echo $rows['ans_id']; ?>]"
+ value="<?php echo $rows['aid']; ?>">
+
+<?php echo $rows['answer']; ?>
+</div> 
+
+
+
+<?php
+  }
+} //bracket close here
+} //for loop
+?>
+
+ <?php if (isset($_POST['submit_start'])) {
+     $_SESSION['submit_start'] = $_POST['submit_start'];
+  
+     }
+?>
+
+<button type="submit"  name="submit_end" class="btn btn-success m-auto d-block">Submit</button>
+
+</form><!-- from use here becouse user give input  -->
+
+ </div>      <!--          this div use to sho the question result -->
+
+</div> <br><!-- end of this div show whole contain lg-8 -->
+
+
+
+  <div><center><a href="logout.php" class="btn btn-warning"> log-out </a></center></div>
+  <br>
+
+  <footer id="copyright" class="py-3 text-light text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="lead mb-0">Copyright 2019 © Dhaka-Jobs</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<!-- Footer -->
+  
+
+ <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/uikit.min.js"></script>
+  <script src="js/uikit-icons.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
+
+////////////////////////////
+elseif (mysqli_num_rows($result3) > 0) {
+ $user_taken = "user already taken";   
+header("location:./register.php?user_taken=$user_taken&first=$first&last=$last&username=$username&email=$email");
+   exit();
+}
+
+elseif(mysqli_num_rows($result4) > 0) {
+ $email_taken = "email already taken";   
+header("location:./register.php?email_taken=$email_taken&first=$first&last=$last&username=$username&email=$email");
+   exit();
+}
