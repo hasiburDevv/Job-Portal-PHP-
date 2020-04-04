@@ -1,31 +1,16 @@
-# Project Name
+# PHP Job Portal
 
-TODO: Write a project description
+Online Job Portal project is web application built using PHP, MySQL as backend and HTML JavaScript & Bootstrap as Frontend technologies. Note that this software is developed as an academic project.
 
 ## Installation
 
-TODO: Describe the installation process
+import the git_repos_jobportal.sql in the xampp mysql database.
+Put the job portal code in htdocs folder.
 
-## Usage
+## Author
 
-TODO: Write usage instructions
-
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-
-## History
-
-TODO: Write history
-
-## Credits
-
-TODO: Write credits
+Hasibur Rahman
 
 ## License
 
-TODO: Write license# Job-Portal-PHP-
+It is an Open Source Project. Feel free to use it or modify it for your own work. Just make sure to give the proper credit to the authors of this Project.
