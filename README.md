@@ -5,6 +5,7 @@ Online Job Portal project is web application built using PHP, MySQL as backend a
 ## Installation
 
 import the git_repos_jobportal.sql in the xampp mysql database.
+
 Put the job portal code in htdocs folder.
 
 ## Author
